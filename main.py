@@ -8,7 +8,7 @@ import os
 # =======================
 def process_image(input_path, output_path, key):
     try:
-        img = Image.open(input_path)
+        img = Image.open(input_path).convert("RGB")
         pixels = img.load()
 
         width, height = img.size
