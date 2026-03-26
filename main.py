@@ -8,14 +8,16 @@ import os
 # =======================
 def process_image(input_path, output_path, key):
     try:
-        img = Image.open(input_path).convert("RGB")
+        img = Image.open(input_path).convert("RGB")  # 🔥 IMPORTANT FIX
         pixels = img.load()
 
         width, height = img.size
 
         for x in range(width):
             for y in range(height):
-                r, g, b = pixels[x, y]
+                pixel = pixels[x, y]
+
+                r, g, b = pixel  # now always safe
 
                 r = r ^ key
                 g = g ^ key
@@ -27,7 +29,7 @@ def process_image(input_path, output_path, key):
         return True
 
     except Exception as e:
-        messagebox.showerror("Error", str(e))
+        print("Error:", e)
         return False
 
 
